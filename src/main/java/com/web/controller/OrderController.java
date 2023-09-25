@@ -35,10 +35,8 @@ public class OrderController {
         return orderRepository.addOrder(products);
     }
     @PutMapping("/update/{id}")
-    @ResponseBody
     public void updateOrderController(@PathVariable Integer id, @RequestBody List<Product> products) {
         Order updateOrder = orderRepository.getOrder(id);
-//         updateOrder;
         log.info("call method Update order...");
         products.forEach(product -> log.info("Update product: " + product.getName() + " " + product.getCost()));
         orderRepository.updateOrder(id, products);

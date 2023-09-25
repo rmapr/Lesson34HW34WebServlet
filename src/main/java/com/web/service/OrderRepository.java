@@ -10,5 +10,9 @@ import java.util.List;
 public interface OrderRepository {
     Order getOrder(Integer id);
     List<Order> getAllOrders();
-    boolean addOrder(List<Product> product);
+    boolean addOrder(List<Product> products);
+    void updateOrder(Integer id, List<Product> products);
+    void deleteOrder(Integer id);
+
+
 }

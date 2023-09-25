@@ -41,4 +41,21 @@ public class OrderRepositoryImpl implements OrderRepository {
         order.setCost(order.getProducts().stream().mapToDouble(Product::getCost).sum());
         return orderList.add(order);
     }
+
+    @Override
+    public void updateOrder(Integer id, List<Product> products) {
+        Order order = getOrder(id);
+        order.setDate(new Timestamp(System.currentTimeMillis()));
+        order.setProducts(products);
+        order.setCost(order.getProducts().stream().mapToDouble(Product::getCost).sum());
+    }
+
+    @Override
+    public void deleteOrder(Integer id) {
+        Order order = getOrder(id);
+        if (!orderList.remove(order)) {
+            log.info("Id for Delete not found...");
+            throw new OrderNotFoundException("Id not found");
+        }
+    }
 }
